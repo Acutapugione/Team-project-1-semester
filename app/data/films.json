@@ -1,18 +1,25 @@
 {
     "films": [
         {
-            "title": "John Wick",
-            "desc": "John Wick",
-            "url": "https://en.wikipedia.org/wiki/John_Wick_(film)",
-            "photo": "AgACAgIAAxkBAAIF0GXF8tcDfiXTrZI66flHXEbXWDd8AALT0jEbv9oxSmz4FMgdy0qyAQADAgADbQADNAQ",
-            "rating": "10/10"
+            "title": "POOR THINGS (2023)",
+            "desc": "Critics Consensus: Wildly imaginative and exhilaratingly over the top, Poor Things is a bizarre, brilliant tour de force for director Yorgos Lanthimos and star Emma Stone.\nSynopsis: From filmmaker Yorgos Lanthimos and producer Emma Stone comes the incredible tale and fantastical evolution of Bella Baxter (Stone), a... [More]\nStarring: Emma Stone, Willem Dafoe, Mark Ruffalo, Christopher Abbott\nDirected By: Yorgos Lanthimos",
+            "url": "https://resizing.flixster.com/_HdyT1Zs-1nqCoy4VHl25cIU29k=/fit-in/180x240/v2/https://resizing.flixster.com/U_RT77J5o2EfMC-DdAc7Dm8CkKY=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzNmM2FiYmJhLTFjYTgtNDljOC04MjQ4LTU1Yjg0M2NkNTdmZC5qcGc=",
+            "photo": "AgACAgIAAxkBAAOfZduNnnabdNvV1SWnHgZNcPtF83kAArfUMRtlsOFKS1BkS7tZxpMBAAMCAANtAAM0BA",
+            "rating": "92%"
         },
         {
-            "title": "Dexter (TV series)",
-            "desc": "Dexter is an American crime drama television series that aired on Showtime from October 1, 2006, to September 22, 2013.[1] Set in Miami, the series centers on Dexter Morgan (Michael C. Hall), a forensic technician specializing in bloodstain pattern analysis for the fictional Miami Metro Police Department, who leads a secret parallel life as a vigilante serial killer, hunting down murderers who have not been adequately punished by the justice system due to corruption or legal technicalities. The show's first season was derived from the novel Darkly Dreaming Dexter (2004), the first in a series of novels by Jeff Lindsay. It was adapted for television by James Manos Jr., who wrote the first episode.[2] Subsequent seasons evolved independently of Lindsay's works.",
-            "url": "https://en.wikipedia.org/wiki/Dexter_(TV_series)",
-            "photo": "AgACAgIAAxkBAAIF4mXF9yaqQvI0ih150YCVqSENV0EbAAJo0zEbv9oxSmzntmSRKZCnAQADAgADbQADNAQ",
-            "rating": "10/10"
+            "title": "MORBIUS (2022)",
+            "desc": "Critics Consensus: Cursed with uninspired effects, rote performances, and a borderline nonsensical story, this dreary mess is a vein attempt to make Morbius happen.\nSynopsis: One of the most compelling and conflicted characters in Sony Pictures Universe of Marvel Characters comes to the big screen... [More]\nStarring: Jared Leto, Matt Smith, Adria Arjona, Jared Harris\nDirected By: Daniel Espinosa",
+            "url": "https://www.rottentomatoes.com/m/morbius",
+            "photo": "AgACAgIAAxkBAAOrZduN2vF6FbNfvKYwpOWU6iUjB_MAArrUMRtlsOFKarypnQo2t9ABAAMCAANtAAM0BA",
+            "rating": "15%"
+        },
+        {
+            "title": "OPPENHEIMER (2023)",
+            "desc": "Critics Consensus: Oppenheimer marks another engrossing achievement from Christopher Nolan that benefits from Murphy's tour-de-force performance and stunning visuals.\nSynopsis: During World War II, Lt. Gen. Leslie Groves Jr. appoints physicist J. Robert Oppenheimer to work on the top-secret Manhattan... [More]\nStarring: Cillian Murphy, Emily Blunt, Robert Downey Jr., Matt Damon\nDirected By: Christopher Nolan",
+            "url": "https://www.rottentomatoes.com/m/oppenheimer_2023",
+            "photo": "AgACAgIAAxkBAAPqZduWfBfpL0w0OKviZXTMnojwZV8AAvTUMRtlsOFKl1dbQ0ihGDIBAAMCAANtAAM0BA",
+            "rating": "9.3/10"
         }
     ]
 }

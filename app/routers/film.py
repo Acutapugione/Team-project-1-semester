@@ -2,34 +2,38 @@ from aiogram import F, Router
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery, ReplyKeyboardRemove
-from typing import BinaryIO
+from typing import BinaryIO, Union
 from aiogram.utils.markdown import hbold
-from ..data import get_films, get_film, save_film
-from ..fsm import FilmCreateForm
-from ..keyboards import (build_films_keyboard,
+
+from .. utils import edit_or_answer, edit_or_answer_photo
+from .. data import get_films, get_film, save_film
+from .. fsm import FilmCreateForm
+from .. keyboards import (build_films_keyboard,
                          build_menu_keyboard, build_film_details_keyboard,)
 
 
 film_router = Router()
 
 
-async def edit_or_answer(message: Message, text: str, keyboard, *args, **kwargs):
-    if message.from_user.is_bot:
-        await message.edit_text(text=text, reply_markup=keyboard, **kwargs)
-    else:
-        await message.answer(text=text, reply_markup=keyboard, **kwargs)
 
 
 @film_router.message(Command("films"))
+@film_router.callback_query(F.data == "films")
 @film_router.message(F.text.casefold() == "films")
-async def show_films_command(message: Message, state: FSMContext) -> None:
+async def show_films_command(message: Union[Message, CallbackQuery], state: FSMContext) -> None:
     films = get_films()
-    if films:
-        keyboard = build_films_keyboard(films)
-        await edit_or_answer(message, "Виберіть будь-який фільм", keyboard)
-    else:
-        await edit_or_answer(message, "Нажаль зараз відсутні фільми. Спробуйте /filmcreate для створення нового.", ReplyKeyboardRemove())
-
+    if isinstance(message, Message):
+        if films:
+            keyboard = build_films_keyboard(films)
+            await edit_or_answer(message, "Виберіть будь-який фільм", keyboard)
+        else:
+            await edit_or_answer(message, "Нажаль зараз відсутні фільми. Спробуйте /filmcreate для створення нового.", ReplyKeyboardRemove())
+    elif isinstance(message, CallbackQuery):
+        if films:
+            keyboard = build_films_keyboard(films)
+            await edit_or_answer(message.message, "Виберіть будь-який фільм", keyboard)
+        else:
+            await edit_or_answer(message.message, "Нажаль зараз відсутні фільми. Спробуйте /filmcreate для створення нового.")
 
 @film_router.callback_query(F.data.startswith("film_"))
 async def show_film_details(callback: CallbackQuery, state: FSMContext) -> None:
@@ -38,14 +42,16 @@ async def show_film_details(callback: CallbackQuery, state: FSMContext) -> None:
     text = f"Назва:{hbold(film.get('title'))}\nОпис:{hbold(film.get('desc'))}\nРейтинг:{hbold(film.get('rating'))}"
     photo_id = film.get('photo')
     url = film.get('url')
-    await callback.message.answer_photo(photo_id)
-    await edit_or_answer(callback.message, text, build_film_details_keyboard(url))
+    await edit_or_answer_photo(callback, photo_id, text, keyboard=build_film_details_keyboard(film, film_id))
+    # await callback.message.answer_photo()
+    # await edit_or_answer(callback.message, text, build_film_details_keyboard(url))
 
 
 @film_router.message(Command("filmcreate"))
+@film_router.callback_query(F.data == "filmcreate")
 @film_router.message(F.text.casefold() == "filmcreate")
 @film_router.message(F.text.casefold() == "create film")
-async def create_film_command(message: Message, state: FSMContext) -> None:
+async def create_film_command(message: Union[Message, CallbackQuery], state: FSMContext) -> None:
     await state.clear()
     await state.set_state(FilmCreateForm.title)
     await edit_or_answer(message, "Яка назва фільму?", ReplyKeyboardRemove())
@@ -104,6 +110,3 @@ async def procees_rating(message: Message, state: FSMContext) -> None:
     return await show_films_command(message, state)
 
 
-@film_router.callback_query(F.data == "back")
-async def back_handler(callback: CallbackQuery, state: FSMContext) -> None:
-    return await show_films_command(callback.message, state)

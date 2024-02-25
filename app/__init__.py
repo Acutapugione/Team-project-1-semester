@@ -5,9 +5,9 @@ from aiogram import Bot, Dispatcher, Router
 from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart
 from aiogram.types import Message
-from aiogram.utils.markdown import hbold
 
-from . routers import film_router
+
+from . routers import default_router, film_router
 
 # Завантажимо дані середовища з файлу .env(За замовчуванням)
 load_dotenv()
@@ -15,12 +15,7 @@ load_dotenv()
 
 # Усі обробники варто закріплювати за Router або Dispatcher
 root_router = Router()
-root_router.include_routers(film_router, )
-
-# Обробник для команди /start
-@root_router.message(CommandStart())
-async def command_start_handler(message: Message) -> None:
-    await message.answer(f"Вітаю, {hbold(message.from_user.full_name)}!")
+root_router.include_routers(default_router, film_router, )
 
 
 
